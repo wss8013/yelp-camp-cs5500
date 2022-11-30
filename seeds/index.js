@@ -1,9 +1,18 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 const mongoose = require('mongoose');
 const cities = require('./cities');
 const {places, descriptors} = require('./seedHelpers');
 const Campground = require('../models/campground');
+const mbxGeoCoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const dbUrl = process.argv.length >= 3 && process.argv[2] == 'online'? process.env.DB_URL : 'mongodb://localhost:27017/yelp-camp';
+const authorId = process.argv.length >= 3 && process.argv[2] == 'online'? '635784d51581d85a03e3f4f4' : '636c42d8d8cf5b7d45440589'; // update your local user id here
+console.log(process.argv);
+console.log(dbUrl);
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp',{
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -14,7 +23,7 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
- const sample = array => array[Math.floor(Math.random() * array.length)];
+const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Campground.deleteMany({});
@@ -23,30 +32,25 @@ const seedDB = async () => {
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             // replace with your own author id
-            author: '6357278db7d42402af6056a7',
-            location:`${cities[random1000].city}, ${cities[random1000].state}`,
+            author: `${authorId}`,
+            location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             description: "New campground in the woods!",
             price,
+            geometry: {
+                type: "Point",
+                coordinates: [cities[random1000].longitude, cities[random1000].latitude]
+            },
             images:[
                 {
-                  url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666739291/YelpCamp/d0ypyveljk9vefr4m6re.jpg',
-                  filename: 'YelpCamp/d0ypyveljk9vefr4m6re',
+                    url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666837257/YelpCamp/ljdhy7wjxqb03ec3zigt.jpg',
+                    filename: 'YelpCamp/ljdhy7wjxqb03ec3zigt.jpg',
                 },
                 {
-                  url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666739291/YelpCamp/ua22vydibl4vappuvoos.jpg',
-                  filename: 'YelpCamp/ua22vydibl4vappuvoos',
-                },
-                {
-                  url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666739291/YelpCamp/xneav2ye840t5tj9ictq.jpg',
-                  filename: 'YelpCamp/xneav2ye840t5tj9ictq',
-                },
-                {
-                  url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666739292/YelpCamp/hifnsivs4ijum0h5qdpa.jpg',
-                  filename: 'YelpCamp/hifnsivs4ijum0h5qdpa',
+                    url: 'https://res.cloudinary.com/darmtuatc/image/upload/v1666766158/YelpCamp/p96jmcn7aefxpce44cqd.jpg',
+                    filename: 'YelpCamp/p96jmcn7aefxpce44cqd.jpg',
                 }
-              ],
-            
+                ],
         })
         await camp.save();
     }

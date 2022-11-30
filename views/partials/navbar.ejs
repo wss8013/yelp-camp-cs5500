@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">YelpCamp</a>
+        <a class="navbar-brand" href="#">YelpCamp-5500</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -11,6 +11,17 @@
                 <a class="nav-link" href="/campgrounds">Campgrounds</a>
                 <a class="nav-link" href="/campgrounds/new">New Campground</a>
             </div>
+
+            <hr class="d-md-none bg-white">
+
+            <div class="navbar-nav d-flex flex-column align-items-center align-items-sm-end flex-lg-row flex-lg-fill">
+              <form action="/campgrounds/search" method="GET" class="d-flex my-3 my-lg-0 flex-grow-1 mx-lg-5">
+                <input name="q" id="search" type="search" placeholder="Search Campgrounds" aria-label="Search" 
+                  class="form-control w-100 me-2 bg-dark text-white btn-outline-secondary">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+              </form>
+              <!-- <i class="bi bi-search"></i> -->
+
             <div class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
                 <a class="nav-link" href="/login">Login</a>

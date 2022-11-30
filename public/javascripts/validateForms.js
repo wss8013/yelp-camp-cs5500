@@ -10,6 +10,13 @@
         .forEach(function (form) {
             form.addEventListener('submit', function (event) {
                 if (!form.checkValidity()) {
+                    function validate() {
+                        var val = document.getElementById('textarea').value;
+                    
+                        if (val.indexOf('\n') != -1) {
+                            alert('Wrong content!');
+                        }
+                    }
                     event.preventDefault()
                     event.stopPropagation()
                 }
