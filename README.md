@@ -7,7 +7,7 @@ Group Project team members: Shasha Wang, Xingzhi Chen, Xiaoliang Xu, Cheng Xue a
 ## Homepage
 ![](uploads/homepage.png)
 
-YelpCamp-5500 is a website where users can access campground information, create and review campgrounds.
+YelpCamp-5500 is a website where users can access campground information, create, review and search campgrounds.
 
 The website includes the campground title, location, estimated price, traveler description, images, and reviews.
 
@@ -21,6 +21,9 @@ Users can rate and leave reviews under existing campground posts to interact wit
 
 ## Register Page
 ![](uploads/register.png)
+
+## Email Verification
+![](uploads/emailCheck.png)
 
 ## Campground Index Page
 ![](uploads/index.png)
@@ -37,6 +40,15 @@ Users can rate and leave reviews under existing campground posts to interact wit
 
 ## Edit a Campground 
 ![](uploads/EditCampground.png)
+
+## Search Campground by Key words
+![](uploads/search.png)
+
+## Search Campground by Zip Code
+![](uploads/search-zip.png)
+
+## Search Campground by Location
+![](uploads/search-location.png)
 
 ## Logout
 ![](uploads/logout.png)

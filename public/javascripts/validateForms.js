@@ -12,7 +12,7 @@
                 if (!form.checkValidity()) {
                     function validate() {
                         var val = document.getElementById('textarea').value;
-                    
+                   
                         if (val.indexOf('\n') != -1) {
                             alert('Wrong content!');
                         }
